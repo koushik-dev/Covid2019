@@ -1,0 +1,11 @@
+.left-pane {
+    display: flex;
+    min-width: 300px;
+    height: 100%;
+    background-color: #1f2e3a;
+    padding: 20px;
+    box-sizing: border-box;
+    color: cyan;
+    flex-direction: column;
+    flex: 1;
+}
