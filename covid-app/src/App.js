@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Card from "./card";
+import LeftPane from './left-pane';
 
 function App() {
-  let [countries, setCountries] = useState([]);
-  let [codes, setCodes] = useState([]);
+  let [countries, setCountries] = useState([]),
+    [codes, setCodes] = useState([]),
+    [searchText, setSearchText] = useState('');
   useEffect(() => {
     axios.get("https://restcountries.eu/rest/v2/all").then(resp => {
       setCodes(resp?.data);
@@ -39,16 +41,30 @@ function App() {
       
     }, [codes]);
 
+    function search(e) {
+      
+      setSearchText(e.target.value);
+    }
+
   return (
     <div className="App">
-      <div className="flex">
-        {countries.map((country, index) => (
-          <Card data={country} key={index} />
-        ))}
+      <LeftPane>
+        <div className="search">
+          <input type="text" className="textbox" onChange={e => search(e)} placeholder="Search Country" />
+        </div>
+      </LeftPane>
+      <div className="right-pane">
+        <div className="flex">
+          {getCountries(countries, searchText).map((country, index) => (
+            <Card data={country} key={index} />
+          ))}
+        </div>
       </div>
-        
     </div>
   );
 }
 
+function getCountries(countries, search = '') {
+  return countries.filter(country => country.country_name.toLowerCase().indexOf(search.toLowerCase()) > -1)
+}
 export default App;

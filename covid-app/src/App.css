@@ -1,4 +1,45 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+  
+body {
+  background-color: #243441;
+}
+.App {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
 .flex {
   display: flex;
   flex-wrap: wrap;
+}
+
+.search {
+  margin-top: 100px;
+}
+
+.right-pane {
+  padding: 13px;
+  overflow-y: scroll;
+  flex: 4;
+}
+
+.search input {
+  width: 100%;
+  font-size: 32px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #243441;
+  box-shadow: -5px -5px 10px 3px #2d3d49, 5px 5px 5px #18252e;
+  outline: none;
+  color: cyan;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search input:focus {
+  box-shadow: inset -5px -5px 10px 3px #2d3d49, inset 5px 5px 5px #18252e;
 }
